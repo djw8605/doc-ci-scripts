@@ -22,6 +22,11 @@ elif [[ "${TRAVIS_BRANCH}" =~ itb\..* ]]; then
     CSS_DIR='docs/css/'
     mkdir -p $CSS_DIR
     cp ci/itb.css $CSS_DIR
+
+    # Prevent site crawling; requires theme custom_dir set to osgthedocs
+    THEME_DIR='osgthedocs'
+    mkdir -p $THEME_DIR
+    cp ci/no-robots.html $THEME_DIR/main.html
 elif [[ "${TRAVIS_BRANCH}" != "master" ]]; then
     echo "Github page deployment not performed for non-master, non-ITB branch"
     exit 0
