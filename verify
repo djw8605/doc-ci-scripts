@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
-PYTHONPATH=src/ mkdocs build --verbose --strict
-sed -i "s/\/${TRAVIS_REPO_SLUG#*/}\///" site/404.html # workaround for https://github.com/mkdocs/mkdocs/issues/1317
-linkchecker --config=ci/linkchecker.config site/index.html
+# We build in / to accommodate 404.html's need for absolute paths in its links
+# https://github.com/mkdocs/mkdocs/issues/1317
+BUILD_DIR="/${TRAVIS_REPO_SLUG#*/}"
+PYTHONPATH=src/ mkdocs build --verbose --strict --site-dir $BUILD_DIR
+linkchecker --config=ci/linkchecker.config $BUILD_DIR/index.html
