@@ -1,5 +1,5 @@
 #!/bin/bash -xe
 
-PYTHONPATH=src/ mkdocs build --verbose --strict
-sed -i "s/\/${TRAVIS_REPO_SLUG#*/}\///" site/404.html # workaround for https://github.com/mkdocs/mkdocs/issues/1317
-linkchecker --config=ci/linkchecker.config site/index.html
+REPO=${TRAVIS_REPO_SLUG#*/}
+PYTHONPATH=src/ mkdocs build --verbose --strict --site-dir /${REPO}
+linkchecker --config=ci/linkchecker.config /${REPO}/site/index.html
