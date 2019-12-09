@@ -5,5 +5,5 @@ RUN pip install -r pip-requirements.txt
 
 ADD ./entrypoint.sh ./entrypoint.sh
 
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
 
