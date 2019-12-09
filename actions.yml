@@ -1,0 +1,10 @@
+# action.yml
+name: 'Build OSG Docs'
+description: 'Build OSG Docs'
+
+outputs:
+  site: # id of output
+    description: 'The directory of the site'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
